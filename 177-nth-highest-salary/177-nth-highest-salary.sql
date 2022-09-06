@@ -1,14 +1,14 @@
+#还是用窗口函数dense_rank.
+
 CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
 BEGIN
-RETURN (
-select
-salary
-from (
-select salary,
-dense_rank()over( order by salary desc) pp
-from employee) gg
-where pp = N
-limit 1
-
-);
+  RETURN (
+      SELECT salary
+      FROM (
+           select salary, 
+           dense_rank()over( order by salary desc) ranking
+           From employee) s
+           WHERE ranking = N
+           LIMIT 1
+  ); 
 END
