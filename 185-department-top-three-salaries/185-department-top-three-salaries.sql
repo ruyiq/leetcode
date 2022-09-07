@@ -1,6 +1,6 @@
 # Write your MySQL query statement below
 WITH cte AS (
-    select DepartmentId, Name, Salary, dense_rank() over (PARTITION BY departmentId ORDER BY Salary DESC) rk FROM employee ) 
+    select dense_rank() over (PARTITION BY departmentId ORDER BY Salary DESC) rk, DepartmentId, Name, Salary FROM employee ) 
 
 SELECT d.name AS 'Department',
     cte.name AS 'Employee',
