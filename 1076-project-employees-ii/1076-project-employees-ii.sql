@@ -1,11 +1,8 @@
 # Write your MySQL query statement below
 
-WITH cte AS (
-    SELECT project_id, COUNT(DISTINCT employee_id) AS total
-    FROM Project
-    GROUP BY project_id
+with cte as (
+    SELECT project_id,COUNT(employee_id) as total FROM Project GROUP BY project_id
 )
-
-SELECT DISTINCT project_id  
+SELECT project_id
 FROM cte
-WHERE total = (SELECT MAX(total) FROM cte)
+WHERE total = (SELECT MAX(total) FROM cte) ;
