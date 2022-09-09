@@ -1,9 +1,4 @@
-# Write your MySQL query statement below
-# 思路:用窗口函数找rank为2的
-
-SELECT CASE WHEN COUNT(*) > 0 THEN salary
-            ELSE NULL END AS SecondHighestSalary
-FROM (
-    SELECT salary,dense_rank() over (order by salary desc) as ranking from Employee
-) s
-WHERE s.ranking=2;
+SELECT CASE WHEN COUNT(*)>0 THEN s.salary
+            ELSE null END AS SecondHighestSalary  
+FROM (SELECT dense_rank() over (ORDER BY salary DESC) AS ranking, salary FROM Employee) s
+WHERE s.ranking = 2;
