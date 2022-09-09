@@ -1,12 +1,11 @@
-#还是用窗口函数dense_rank.
-
 CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
 BEGIN
   RETURN (
-      SELECT salary FROM (
-           select DISTINCT salary, 
-           dense_rank()over( order by salary desc) ranking
-           From employee) s
-           WHERE ranking = N
-  ); 
+      SELECT CASE WHEN COUNT(*)>0 THEN s.salary 
+                ELSE null END AS getNthHighestSalary
+      FROM (SELECT dense_rank() over (ORDER BY salary DESC) AS ranking, salary FROM Employee) s
+      WHERE s.ranking = N
+     
+      );
+      
 END
