@@ -1,10 +1,9 @@
-# Write your MySQL query statement below
-with cte as (
-    SELECT RANK() over (PARTITION BY departmentId ORDER BY salary DESC) rk, departmentId, name, salary FROM Employee)
+WITH id_and_highest_salary AS (
+    SELECT rank() over (PARTITION BY departmentId ORDER BY salary DESC) AS rk, id , name, salary, departmentId FROM Employee
+)
 
-SELECT d.name AS 'Department', 
-    cte.name AS 'Employee', 
-    cte.salary AS 'Salary'
-FROM cte
-    JOIN department d
-    ON d.id=cte.departmentId AND rk=1;
+SELECT d.name AS Department, i.name AS Employee, i.salary AS Salary
+FROM id_and_highest_salary i
+JOIN Department d
+    ON d.id=i.departmentId 
+WHERE i.rk=1;
