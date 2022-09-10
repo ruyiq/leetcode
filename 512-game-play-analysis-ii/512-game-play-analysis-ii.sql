@@ -1,9 +1,3 @@
-WITH minDates(p_id, min_date) AS (
-    SELECT player_id, MIN(event_date)
-    FROM Activity
-    GROUP BY player_id
-)
-SELECT player_id, device_id
-FROM Activity
-JOIN minDates
-ON player_id = p_id AND event_date = min_date
+SELECT s.player_id, s.device_id 
+FROM (SELECT rank() over(PARTITION BY player_id ORDER BY event_date) ranking, player_id, device_id FROM Activity) s 
+WHERE s.ranking=1;
