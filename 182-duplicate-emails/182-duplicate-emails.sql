@@ -1,4 +1,3 @@
-# Write your MySQL query statement below
-SELECT DISTINCT a.email
-FROM person a, person b
-WHERE a.email=b.email AND a.id<>b.id;
+SELECT DISTINCT p1.email
+FROM Person p1, Person p2
+WHERE p1.id <> p2.id AND p1.email=p2.email;
