@@ -5,5 +5,5 @@ SELECT receiever.employee_id,
 FROM Employees reporter
 JOIN Employees receiever
     ON reporter.reports_to = receiever.employee_id
-GROUP BY employee_id
-ORDER BY employee_id;
+GROUP BY receiever.employee_id
+ORDER BY receiever.employee_id;
