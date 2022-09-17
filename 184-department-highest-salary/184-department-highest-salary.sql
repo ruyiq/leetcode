@@ -1,9 +1,10 @@
-WITH id_and_highest_salary AS (
-    SELECT rank() over (PARTITION BY departmentId ORDER BY salary DESC) AS rk, id , name, salary, departmentId FROM Employee
+with cte as(
+    SELECT name, salary, s.departmentId AS departmentId
+    FROM (SELECT *, dense_rank() over (PARTITION BY departmentId ORDER BY salary DESC) ranking FROM Employee) s
+    WHERE s.ranking=1
 )
 
-SELECT d.name AS Department, i.name AS Employee, i.salary AS Salary
-FROM id_and_highest_salary i
+SELECT DISTINCT d.name AS Department, c.name AS Employee, c.salary AS Salary
+FROM cte c
 JOIN Department d
-    ON d.id=i.departmentId 
-WHERE i.rk=1;
+    ON d.id=c.departmentId;
