@@ -1,6 +1,5 @@
-SELECT DISTINCT product_id, product_name
+SELECT DISTINCT p.product_id, p.product_name 
 FROM Product p
 JOIN Sales s
-    USING(product_id)
-WHERE product_id NOT IN (SELECT product_id FROM Sales WHERE QUARTER(sale_date) IN (2,3,4))
-    AND YEAR(s.sale_date)=2019;
+    USING(product_id )
+WHERE p.product_id NOT IN (SELECT product_id FROM Sales WHERE sale_date NOT BETWEEN "2019-01-01" AND "2019-03-31" );
