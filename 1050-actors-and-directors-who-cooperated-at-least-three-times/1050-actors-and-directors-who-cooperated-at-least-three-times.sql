@@ -1,4 +1,4 @@
-SELECT actor_id, director_id  
+SELECT DISTINCT actor_id, director_id
 FROM ActorDirector
-GROUP BY actor_id, director_id
-    HAVING COUNT(*)>=3
+GROUP BY actor_id, director_id 
+HAVING COUNT(*)>=3;
