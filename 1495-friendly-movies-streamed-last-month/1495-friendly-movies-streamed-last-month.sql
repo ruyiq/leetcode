@@ -1,5 +1,8 @@
-SELECT DISTINCT c.title 
+SELECT DISTINCT c.title
 FROM Content c
 JOIN TVProgram t
     USING(content_id)
-WHERE c.Kids_content="Y" AND t.program_date like "2020-06%" AND c.content_type  ="Movies";
+WHERE Kids_content="Y" 
+    AND MONTH(program_date)=6 
+    AND YEAR(program_date)=2020 
+    AND content_type="Movies";
