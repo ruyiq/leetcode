@@ -1,4 +1,5 @@
-SELECT eu.unique_id AS unique_id, e.name
+SELECT uni.unique_id, e.name
 FROM Employees e
-LEFT JOIN EmployeeUNI eu
-    USING(id);
+LEFT JOIN EmployeeUNI uni
+    USING(id)
+    
