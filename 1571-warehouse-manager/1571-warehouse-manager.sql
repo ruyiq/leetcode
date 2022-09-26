@@ -1,5 +1,5 @@
-SELECT w.name AS warehouse_name, SUM(p.width*p.length*p.height*w.units) AS volume     
+SELECT w.name AS warehouse_name , SUM(w.units*p.width*p.Length*p.Height) AS volume
 FROM Warehouse w
 JOIN Products p
-    USING(product_id)
-GROUP BY w.name;
+    ON w.product_id=p.product_id
+GROUP BY w.name
