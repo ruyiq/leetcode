@@ -1,5 +1,14 @@
 SELECT employee_id,
-CASE WHEN COUNT(employee_id)=1 THEN department_id
-    ELSE sum(if(primary_flag='Y',department_id,0)) END AS department_id
-FROM Employee
-GROUP BY employee_id;
+    department_id
+FROM Employee 
+GROUP BY employee_id
+HAVING COUNT(department_id)=1
+
+UNION
+
+SELECT employee_id,
+    department_id
+FROM Employee 
+WHERE primary_flag="Y"
+GROUP BY employee_id
+    
