@@ -1,12 +1,15 @@
-# Write your MySQL query statement below
-SELECT employee_id 
-FROM Employees 
-WHERE employee_id NOT IN (SELECT employee_id FROM Salaries)
+with cte as (
+    SELECT employee_id
+    FROM Employees
+    WHERE employee_id NOT IN (SELECT employee_id FROM Salaries)
 
-UNION
+    UNION 
 
-SELECT employee_id 
-FROM Salaries 
-WHERE employee_id NOT IN (SELECT employee_id FROM Employees)
+    SELECT employee_id
+    FROM Salaries
+    WHERE employee_id NOT IN (SELECT employee_id FROM Employees)
+)
 
-ORDER BY employee_id ;
+SELECT *
+FROM cte
+ORDER BY employee_id;
