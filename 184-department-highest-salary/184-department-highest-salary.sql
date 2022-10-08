@@ -1,10 +1,10 @@
-with cte as(
-    SELECT name, salary, s.departmentId AS departmentId
-    FROM (SELECT *, dense_rank() over (PARTITION BY departmentId ORDER BY salary DESC) ranking FROM Employee) s
-    WHERE s.ranking=1
+with cte as (
+    SELECT departmentId, name, salary
+    FROM (SELECT *, rank() over(PARTITION BY departmentId ORDER BY salary DESC) ranking FROM Employee)s
+    WHERE ranking=1
 )
 
-SELECT DISTINCT d.name AS Department, c.name AS Employee, c.salary AS Salary
+SELECT d.name AS Department , c.name AS Employee , c.salary
 FROM cte c
 JOIN Department d
-    ON d.id=c.departmentId;
+    ON c.departmentId=d.id;
