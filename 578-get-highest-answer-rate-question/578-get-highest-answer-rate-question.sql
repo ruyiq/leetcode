@@ -1,10 +1,10 @@
-WITH cte AS (
-    SELECT question_id, count(case when action='answer' then question_id end)/count(case when action='show' then question_id end) as answerrate
-FROM SurveyLog 
+with cte as (
+    SELECT question_id, SUM(IF(action="answer",1,0))/SUM(IF(action="show",1,0)) as rate
+    FROM SurveyLog
     GROUP BY question_id
-    ORDER BY answerrate DESC, question_id
-    LIMIT 1
 )
 
-SELECT question_id AS survey_log 
-FROM cte;
+SELECT question_id AS survey_log
+FROM cte
+ORDER BY rate DESC, question_id
+LIMIT 1
