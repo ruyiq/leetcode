@@ -1,11 +1,5 @@
-with cte as(
-select player_id, event_date,
-first_value(event_date) over(partition by player_Id order by player_id, event_date) as first_event
-from Activity
-)
-
-select
-round(
-(select count(distinct player_id) from cte where datediff(event_date,first_event) = 1)/
-(select count(distinct player_id) from cte)
-,2) as fraction
+SELECT ROUND(COUNT(DISTINCT player_id )/(SELECT COUNT(DISTINCT player_id) FROM activity),2) as fraction
+FROM (SELECT *, 
+      MIN(event_date) OVER(PARTITION BY player_id ORDER BY event_date) first_log 
+      FROM Activity) s
+WHERE datediff(event_date,first_log) = 1
