@@ -1,1 +1,1 @@
-​
+first year of every product sold -> use rank  limit 1
