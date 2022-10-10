@@ -1,6 +1,3 @@
-SELECT s.product_id,
-    year AS first_year,
-    s.quantity,
-    s.price
-FROM (SELECT *, rank() over (PARTITION BY product_id ORDER BY year) as ranking FROM Sales) s
-WHERE s.ranking=1;
+SELECT product_id, year AS first_year, quantity, price 
+FROM (SELECT *, RANK() OVER (PARTITION BY product_id ORDER BY year) ranking FROM Sales) s
+WHERE ranking=1;
