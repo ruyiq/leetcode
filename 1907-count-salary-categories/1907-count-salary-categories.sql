@@ -1,5 +1,12 @@
-select 'Low Salary' as category, sum(case when income < 20000 then 1 else 0 end) as accounts_count from accounts
+SELECT 'Low Salary' AS category, SUM(IF(income < 20000,1,0)) AS accounts_count 
+FROM accounts
+
 UNION
-select 'High Salary' as category, sum(case when income > 50000 then 1 else 0 end) as accounts_count from accounts
+
+SELECT 'High Salary' AS category, SUM(IF(income > 50000,1,0)) AS accounts_count 
+FROM accounts
+
 UNION
-select 'Average Salary' as category, sum(case when income >= 20000 and income <= 50000 then 1 else 0 end) as accounts_count from accounts
+
+SELECT 'Average Salary' AS category, SUM(IF(income >= 20000 and income <= 50000,1,0)) AS accounts_count 
+FROM accounts
