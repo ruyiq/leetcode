@@ -1,5 +1,5 @@
-SELECT DISTINCT v1.author_id AS id
-FROM Views v1
-JOIN Views v2
-    ON v1.article_id=v2.article_id AND v1.author_id = v2.viewer_id
-ORDER BY id;
+# Write your MySQL query statement below
+SELECT DISTINCT author_id AS id
+FROM Views
+WHERE viewer_id = author_id
+ORDER BY author_id
