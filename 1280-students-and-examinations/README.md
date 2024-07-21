@@ -1,12 +1,13 @@
-<h2><a href="https://leetcode.com/problems/students-and-examinations/">1280. Students and Examinations</a></h2><h3>Easy</h3><hr><div class="sql-schema-wrapper__3VBi"><a class="sql-schema-link__3cEg">SQL Schema<svg viewBox="0 0 24 24" width="1em" height="1em" class="icon__1Md2"><path fill-rule="evenodd" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></a></div><div><p>Table: <code>Students</code></p>
+<h2><a href="https://leetcode.com/problems/students-and-examinations">1280. Students and Examinations</a></h2><h3>Easy</h3><hr><p>Table: <code>Students</code></p>
 
-<pre>+---------------+---------+
+<pre>
++---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
 | student_id    | int     |
 | student_name  | varchar |
 +---------------+---------+
-student_id is the primary key for this table.
+student_id is the primary key (column with unique values) for this table.
 Each row of this table contains the ID and the name of one student in the school.
 </pre>
 
@@ -14,12 +15,13 @@ Each row of this table contains the ID and the name of one student in the school
 
 <p>Table: <code>Subjects</code></p>
 
-<pre>+--------------+---------+
+<pre>
++--------------+---------+
 | Column Name  | Type    |
 +--------------+---------+
 | subject_name | varchar |
 +--------------+---------+
-subject_name is the primary key for this table.
+subject_name is the primary key (column with unique values) for this table.
 Each row of this table contains the name of one subject in the school.
 </pre>
 
@@ -27,29 +29,31 @@ Each row of this table contains the name of one subject in the school.
 
 <p>Table: <code>Examinations</code></p>
 
-<pre>+--------------+---------+
+<pre>
++--------------+---------+
 | Column Name  | Type    |
 +--------------+---------+
 | student_id   | int     |
 | subject_name | varchar |
 +--------------+---------+
-There is no primary key for this table. It may contain duplicates.
+There is no primary key (column with unique values) for this table. It may contain duplicates.
 Each student from the Students table takes every course from the Subjects table.
 Each row of this table indicates that a student with ID student_id attended the exam of subject_name.
 </pre>
 
 <p>&nbsp;</p>
 
-<p>Write an SQL query to find the number of times each student attended each exam.</p>
+<p>Write a solution to find the number of times each student attended each exam.</p>
 
 <p>Return the result table ordered by <code>student_id</code> and <code>subject_name</code>.</p>
 
-<p>The query result format is in the following example.</p>
+<p>The result format is in the following example.</p>
 
 <p>&nbsp;</p>
-<p><strong>Example 1:</strong></p>
+<p><strong class="example">Example 1:</strong></p>
 
-<pre><strong>Input:</strong> 
+<pre>
+<strong>Input:</strong> 
 Students table:
 +------------+--------------+
 | student_id | student_name |
@@ -107,4 +111,3 @@ Bob attended the Math exam 1 time, the Programming exam 1 time, and did not atte
 Alex did not attend any exams.
 John attended the Math exam 1 time, the Physics exam 1 time, and the Programming exam 1 time.
 </pre>
-</div>
