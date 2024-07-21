@@ -1,4 +1,5 @@
-SELECT p.product_name, s.year, s.price 
+# Write your MySQL query statement below
+SELECT p.product_name, s.year, s.price
 FROM Sales s
-JOIN Product p
-    USING(product_id)
+LEFT JOIN Product p ON s.product_id = p.product_id
+GROUP BY s.sale_id
