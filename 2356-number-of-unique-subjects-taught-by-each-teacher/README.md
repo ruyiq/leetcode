@@ -1,28 +1,30 @@
-<h2><a href="https://leetcode.com/problems/number-of-unique-subjects-taught-by-each-teacher/">2356. Number of Unique Subjects Taught by Each Teacher</a></h2><h3>Easy</h3><hr><div class="sql-schema-wrapper__3VBi"><a class="sql-schema-link__3cEg">SQL Schema<svg viewBox="0 0 24 24" width="1em" height="1em" class="icon__1Md2"><path fill-rule="evenodd" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></a></div><div><p>Table: <code>Teacher</code></p>
+<h2><a href="https://leetcode.com/problems/number-of-unique-subjects-taught-by-each-teacher">2356. Number of Unique Subjects Taught by Each Teacher</a></h2><h3>Easy</h3><hr><p>Table: <code>Teacher</code></p>
 
-<pre>+-------------+------+
+<pre>
++-------------+------+
 | Column Name | Type |
 +-------------+------+
 | teacher_id  | int  |
 | subject_id  | int  |
 | dept_id     | int  |
 +-------------+------+
-(subject_id, dept_id) is the primary key for this table.
+(subject_id, dept_id) is the primary key (combinations of columns with unique values) of this table.
 Each row in this table indicates that the teacher with teacher_id teaches the subject subject_id in the department dept_id.
 </pre>
 
 <p>&nbsp;</p>
 
-<p>Write an SQL query to report the number of unique subjects each teacher teaches in the university.</p>
+<p>Write a solution to calculate&nbsp;the number of unique subjects each teacher teaches in the university.</p>
 
 <p>Return the result table in <strong>any order</strong>.</p>
 
-<p>The query result format is shown in the following example.</p>
+<p>The&nbsp;result format is shown in the following example.</p>
 
 <p>&nbsp;</p>
-<p><strong>Example 1:</strong></p>
+<p><strong class="example">Example 1:</strong></p>
 
-<pre><strong>Input:</strong> 
+<pre>
+<strong>Input:</strong> 
 Teacher table:
 +------------+------------+---------+
 | teacher_id | subject_id | dept_id |
@@ -52,4 +54,3 @@ Teacher 2:
   - They teach subject 3 in department 1.
   - They teach subject 4 in department 1.
 </pre>
-</div>
