@@ -1,6 +1,16 @@
-select person_name from
-(select *, sum(weight) over(order by turn) as cum_sum
-from queue) x
-where cum_sum <= 1000
-order by turn desc 
-limit 1;
+# Write your MySQL query statement below
+WITH CTE AS(
+    SELECT *,
+        SUM(weight) OVER (ORDER BY turn) as acc_sum
+    FROM Queue  
+),
+
+CTE2 AS(
+    SELECT MAX(turn) AS turn
+    FROM CTE 
+    WHERE acc_sum<=1000
+)
+
+SELECT q.person_name AS person_name 
+FROM Queue q, CTE2 c
+WHERE q.turn = c.turn
